@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Angular Multiselect</title>
+		<style type="text/css">
+			body{
+				margin: 30px;
+				background: #ffffff;
+			}
+			.screen{
+				overflow: auto;
+			}
+			.halfscreen{
+				float: left;
+				width:50%;
+			}
+			p.center{
+				text-align: center;
+			}
+			.footer{
+				text-align: center;
+				border-top:1px solid black;
+				float: left;
+				width: 100%;
+				margin: 30px 20px;
+				padding-top: 30px;
+			}
+			.multiselect{
+		        width:300px;
+		        height:94px;
+		        border:2px solid #e5e5e5;
+		        border-radius:4px;
+		        overflow-y:scroll;
+		        margin: auto;
+		    }
+		    .multiselect>.options{
+		        border-bottom:1px dashed #ddd;
+		        overflow: auto;
+		    }
+		    .multiselect>.options>label{
+		        margin:0px;
+		        font-size: 17px;
+		        padding: 6px;
+		        width: 100%;
+		        float: left;
+		    }
+		    .multiselect>.options>label.selected{
+		        background: #47C9C8;
+		    }
+		    .multiselect>.options>label>input{
+		        margin:0 10px 0 0;
+		        float:left;
+		        height:21px;
+		        width:auto;
+		    }
+		</style>
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="multiselect2.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('demo', ['multiselect2']);
+		    app.controller('demoCtrl', function ($scope) {
+		        $scope.optionlist=[{name:'John Doe',id:20},{name:'Emily Clark',id:22},{name:'Pink Panther',id:25},{name:'James Bond',id:7}];
+		        $scope.selectedlist=[];
+		        $scope.selectedlist.push($scope.optionlist[1]);
+		    });
+		</script>
+	</head>
+	<body ng-app="demo">
+		<div class="screen" ng-controller="demoCtrl">
+			<h1>Multiselect2</h1>
+			<p>Fully Customizable Angular Directive for Pretty Multiselects</p>
+			<div class="halfscreen">
+				<p class="center">Window 1</p>
+				<multiselect2 optionlist='optionlist' label='name' selectedlist='selectedlist'></multiselect2>
+			</div>
+			<div class="halfscreen">
+				<p class="center">Window 2</p>
+				<multiselect2 optionlist='optionlist' label='name' selectedlist='selectedlist'></multiselect2>
+			</div>
+			<div class="footer">
+				Selected list = {{selectedlist | json}}
+			</div>
+		</div>
+		<div>
+			<h3>Usage</h3>
+			<p>&lt;multiselect2 <b>optionlist</b>='optionlist' <b>label</b>='name' <b>selectedlist</b>='selectedlist'&gt;&lt;/ multiselect2&gt;</p>
+			<p><b>optionlist</b> : Array of objects to be passed as options.</p>
+			<p><b>label</b> : The key to be used as label</p>
+			<p><b>selectedlist</b> : Array of selected objects</p>
+			<p>Make sure that you use relevant CSS to customize the multiselect for your need. CSS on this page should prove helpfull.</p>
+			<p>Author : Subhash S</p>
+		</div>
+	</body>
+</html>
